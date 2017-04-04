@@ -9,13 +9,13 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) throws IOException, RPCException, InterruptedException, StreamException {
-		new Subroutine(Connection.newInstance()) {
-			@Override
-			public void execute() throws IOException, RPCException, InterruptedException, StreamException {
-				throw new RuntimeException();
-			}
-		}.executeNode();
-//		new SimpleOrbiter(Connection.newInstance()).execute();
+//		new Subroutine(Connection.newInstance()) {
+//			@Override
+//			public void execute() throws IOException, RPCException, InterruptedException, StreamException {
+//				throw new RuntimeException();
+//			}
+//		}.executeNode();
+		new SimpleOrbiter(Connection.newInstance()).execute();
 	}
 
 }
