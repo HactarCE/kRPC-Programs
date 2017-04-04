@@ -1,4 +1,4 @@
-package hactarce.ksp;
+package hactarce;
 
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
@@ -20,6 +20,22 @@ public class Utils {
 
 	public static void log(@NotNull String format, @Nullable Object... args) {
 		System.out.println(new SimpleDateFormat("[HH:mm:ss] ").format(new Date()) + fmt(format, args));
+	}
+
+	public static int range(int n, int min, int max) {
+		return n > max ? max : Math.max(n, min);
+	}
+
+	public static long range(long n, long min, long max) {
+		return n > max ? max : Math.max(n, min);
+	}
+
+	public static float range(float n, float min, float max) {
+		return n > max ? max : Math.max(n, min);
+	}
+
+	public static double range(double n, double min, double max) {
+		return n > max ? max : Math.max(n, min);
 	}
 
 }
