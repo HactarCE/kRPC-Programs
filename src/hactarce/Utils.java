@@ -2,6 +2,7 @@ package hactarce;
 
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
+import org.javatuples.Triplet;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,20 +23,36 @@ public class Utils {
 		System.out.println(new SimpleDateFormat("[HH:mm:ss] ").format(new Date()) + fmt(format, args));
 	}
 
-	public static int range(int n, int min, int max) {
-		return n > max ? max : Math.max(n, min);
+	public static Triplet<Double, Double, Double> crossProduct(
+			Triplet<Double, Double, Double> u, Triplet<Double, Double, Double> v) {
+		return new Triplet<>(
+				u.getValue1() * v.getValue2() - u.getValue2() * v.getValue1(),
+				u.getValue2() * v.getValue0() - u.getValue0() * v.getValue2(),
+				u.getValue0() * v.getValue1() - u.getValue1() * v.getValue0()
+		);
 	}
 
-	public static long range(long n, long min, long max) {
-		return n > max ? max : Math.max(n, min);
+	public static double dotProduct(Triplet<Double, Double, Double> u,
+							 Triplet<Double, Double, Double> v) {
+		return u.getValue0() * v.getValue0() +
+				u.getValue1() * v.getValue1() +
+				u.getValue2() * v.getValue2();
 	}
 
-	public static float range(float n, float min, float max) {
-		return n > max ? max : Math.max(n, min);
+	public static double magnitude(Triplet<Double, Double, Double> v) {
+		return Math.sqrt(dotProduct(v, v));
 	}
 
-	public static double range(double n, double min, double max) {
-		return n > max ? max : Math.max(n, min);
+	// Compute the angle between vector x and y
+	public static double angleBetweenVectors(Triplet<Double, Double, Double> u,
+									  Triplet<Double, Double, Double> v) {
+		double dp = dotProduct(u, v);
+		if (dp == 0) {
+			return 0;
+		}
+		double um = magnitude(u);
+		double vm = magnitude(v);
+		return Math.acos(dp / (um * vm)) * (180f / Math.PI);
 	}
 
 }
